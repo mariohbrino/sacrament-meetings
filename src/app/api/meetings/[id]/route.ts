@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const idSchema = z.number().int().positive();
-
 import { getMeetingById } from "@/services/db";
+
+const idSchema = z.number().int().positive();
 
 type RouteParams = {
   params: Promise<{ id: string }>;

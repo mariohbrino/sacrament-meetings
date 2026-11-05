@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { meetingBadges } from "@/components/meeting-badges";
+import { meetingBadges } from "@/components/meetings/meeting-badges";
 import type { MeetingType } from "@/types/base";
 import { formatDate } from "@/utils/data-format.util";
 

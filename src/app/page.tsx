@@ -1,28 +1,8 @@
 import Image from "next/image";
 import { Suspense } from "react";
 
-import { MeetingCard, MeetingCardPlaceholder } from "@/components/meeting-card";
-import { fetchApi } from "@/services/http-client";
-import type { SacramentMeeting } from "@/types/base";
-
-const MeetingsList = async () => {
-  const meetings: SacramentMeeting[] = await fetchApi("api/meetings");
-
-  return (
-    <>
-      {meetings.map((meeting) => (
-        <MeetingCard
-          key={meeting.id}
-          date={meeting.date}
-          presiding={meeting.presiding}
-          conducting={meeting.conducting}
-          meetingType={meeting.meetingType}
-          link={`/meetings/${meeting.id}`}
-        />
-      ))}
-    </>
-  );
-};
+import { MeetingCardPlaceholder } from "@/components/meetings/meeting-card";
+import { MeetingsList } from "@/components/meetings/meeting-list";
 
 export default function Home() {
   return (
