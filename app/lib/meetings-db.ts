@@ -1,0 +1,108 @@
+import type { SacramentMeeting } from "./types";
+
+const meetings: SacramentMeeting[] = [
+  {
+    id: 1,
+    date: "2026-05-03",
+    meetingType: "regular",
+    presiding: "Bishop Smith",
+    conducting: "Brother Jones",
+    openingHymn: { number: 2, title: "The Spirit of God" },
+    openingPrayer: "Sister Williams",
+    wardBusiness: [{ description: "Sustaining of new Primary president" }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 169, title: "In Remembrance of Thy Suffering" },
+    speakers: [
+      { name: "Sister Brown", topic: "Faith in Jesus Christ", type: "speaker" },
+      { name: "Youth Choir", topic: "", type: "musical-number" },
+    ],
+    closingHymn: { number: 31, title: "O God, Our Help in Ages Past" },
+    closingPrayer: "Brother Davis",
+    announcements: ["Ward temple night: May 10"],
+  },
+  {
+    id: 2,
+    date: "2026-05-10",
+    meetingType: "regular",
+    presiding: "Bishop Smith",
+    conducting: "Brother Johnson",
+    openingHymn: { number: 3, title: "Now Let Us Rejoice" },
+    openingPrayer: "Brother Thompson",
+    wardBusiness: [{ description: "Sustaining of new Relief Society president" }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 174, title: "Lord, I Would Follow Thee" },
+    speakers: [
+      { name: "Brother White", topic: "Charity and Service", type: "speaker" },
+      { name: "Primary Choir", topic: "", type: "musical-number" },
+    ],
+    closingHymn: { number: 34, title: "Come, Thou Fount of Every Blessing" },
+    closingPrayer: "Sister Green",
+    announcements: ["Ward temple night: May 17"],
+  },
+  {
+    id: 3,
+    date: "2026-05-17",
+    meetingType: "regular",
+    presiding: "Bishop Smith",
+    conducting: "Brother Williams",
+    openingHymn: { number: 4, title: "Come, Let Us Sing of a Wonderful Love" },
+    openingPrayer: "Brother Brown",
+    wardBusiness: [{ description: "Sustaining of new Young Men president" }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 177, title: "Jesus, Once of Humble Birth" },
+    speakers: [
+      { name: "Sister Taylor", topic: "The Power of Prayer", type: "speaker" },
+      { name: "Ward Choir", topic: "", type: "musical-number" },
+    ],
+    closingHymn: { number: 36, title: "How Great Thou Art" },
+    closingPrayer: "Brother White",
+    announcements: ["Ward temple night: May 24"],
+  },
+  {
+    id: 4,
+    date: "2026-05-24",
+    meetingType: "regular",
+    presiding: "Bishop Smith",
+    conducting: "Brother Davis",
+    openingHymn: { number: 5, title: "High on the Mountain Top" },
+    openingPrayer: "Sister Taylor",
+    wardBusiness: [{ description: "Sustaining of new Primary president" }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 184, title: "God Be with You Till We Meet Again" },
+    speakers: [
+      { name: "Brother Green", topic: "The Importance of Scripture Study", type: "speaker" },
+      { name: "Ward Choir", topic: "", type: "musical-number" },
+    ],
+    closingHymn: { number: 38, title: "Now Let Us Rejoice" },
+    closingPrayer: "Brother Johnson",
+    announcements: ["Ward temple night: May 31"],
+  },
+  {
+    id: 5,
+    date: "2026-05-31",
+    meetingType: "regular",
+    presiding: "Bishop Smith",
+    conducting: "Brother Thompson",
+    openingHymn: { number: 6, title: "I Am a Child of God" },
+    openingPrayer: "Sister Brown",
+    wardBusiness: [{ description: "Sustaining of new Relief Society president" }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 190, title: "I Stand All Amazed" },
+    speakers: [
+      { name: "Brother Johnson", topic: "Faith and Obedience", type: "speaker" },
+      { name: "Ward Choir", topic: "", type: "musical-number" },
+    ],
+    closingHymn: { number: 40, title: "God of Our Fathers" },
+    closingPrayer: "Brother Davis",
+    announcements: ["Ward temple night: June 7"],
+  },
+];
+
+export const getMeetings = (date?: string | null): SacramentMeeting[] => {
+  if (date) return meetings.filter((meeting) => meeting.date === date);
+  return meetings;
+};
+
+export const getMeetingById = (id: number): SacramentMeeting | null => {
+  return meetings.find((meeting) => meeting.id === id) ?? null;
+};
