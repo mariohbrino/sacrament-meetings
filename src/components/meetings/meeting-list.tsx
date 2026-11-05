@@ -1,9 +1,8 @@
 import { MeetingCard } from "@/components/meetings/meeting-card";
-import { fetchApi } from "@/services/http-client";
-import type { SacramentMeeting } from "@/types/base";
+import { getMeetings } from "@/services/db";
 
 export const MeetingsList = async () => {
-  const meetings: SacramentMeeting[] = await fetchApi("api/meetings");
+  const meetings = await getMeetings();
 
   return (
     <>

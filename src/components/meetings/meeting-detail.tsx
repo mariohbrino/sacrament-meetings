@@ -1,8 +1,8 @@
+import { notFound } from "next/navigation";
 import { z } from "zod";
 
 import { MeetingInfo } from "@/components/meetings/meeting-info";
-import { fetchApi } from "@/services/http-client";
-import type { SacramentMeeting } from "@/types/base";
+import { getMeetingById } from "@/services/db";
 
 const idSchema = z.number().int().positive();
 
@@ -12,7 +12,12 @@ type RouteParams = {
 
 export const MeetingDetail = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const meetingId = idSchema.parse(Number(id));
-  const meetingDetail: SacramentMeeting = await fetchApi(`api/meetings/${meetingId}`);
+
+  const parsedId = idSchema.safeParse(Number(id));
+  if (!parsedId.success) notFound();
+
+  const meetingDetail = await getMeetingById(parsedId.data);
+  if (!meetingDetail) notFound();
+
   return <MeetingInfo meetingDetail={meetingDetail} />;
 };
