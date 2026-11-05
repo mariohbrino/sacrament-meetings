@@ -1,10 +1,10 @@
-import type { SacramentMeeting } from "../types/base";
+import type { SacramentMeeting } from "@/types/base";
 
 export const meetings: SacramentMeeting[] = [
   {
     id: 1,
     date: "2026-05-03",
-    meetingType: "regular",
+    meetingType: "testimony",
     presiding: "Bishop Smith",
     conducting: "Brother Jones",
     openingHymn: { number: 2, title: "The Spirit of God" },
@@ -42,7 +42,7 @@ export const meetings: SacramentMeeting[] = [
   {
     id: 3,
     date: "2026-05-17",
-    meetingType: "regular",
+    meetingType: "stake",
     presiding: "Bishop Smith",
     conducting: "Brother Williams",
     openingHymn: { number: 4, title: "Come, Let Us Sing of a Wonderful Love" },
@@ -80,7 +80,7 @@ export const meetings: SacramentMeeting[] = [
   {
     id: 5,
     date: "2026-05-31",
-    meetingType: "regular",
+    meetingType: "general",
     presiding: "Bishop Smith",
     conducting: "Brother Thompson",
     openingHymn: { number: 6, title: "I Am a Child of God" },

@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import NavLink from "@/components/nav-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -8,7 +10,10 @@ type NavLink = {
   label: string;
 };
 
-const navLinks: NavLink[] = [{ href: "/", label: "Home" }];
+const navLinks: NavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/meetings", label: "Meetings" },
+];
 
 export default function Header() {
   return (
@@ -18,13 +23,19 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <nav className="space-x-4">
             <ul className="flex space-x-4">
-              {navLinks.map(({ href, label }) => (
-                <li key={href}>
-                  <NavLink href={href} activeStyle="font-bold" className="text-foreground hover:text-muted-foreground">
-                    {label}
-                  </NavLink>
-                </li>
-              ))}
+              <Suspense fallback={<li>Loading...</li>}>
+                {navLinks.map(({ href, label }, index) => (
+                  <li key={index}>
+                    <NavLink
+                      href={href}
+                      activeStyle="font-bold"
+                      className="text-foreground hover:text-muted-foreground"
+                    >
+                      {label}
+                    </NavLink>
+                  </li>
+                ))}
+              </Suspense>
             </ul>
           </nav>
           <ThemeToggle />
