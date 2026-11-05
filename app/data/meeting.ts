@@ -1,6 +1,6 @@
-import type { SacramentMeeting } from "./types";
+import type { SacramentMeeting } from "../types/base";
 
-const meetings: SacramentMeeting[] = [
+export const meetings: SacramentMeeting[] = [
   {
     id: 1,
     date: "2026-05-03",
@@ -97,12 +97,3 @@ const meetings: SacramentMeeting[] = [
     announcements: ["Ward temple night: June 7"],
   },
 ];
-
-export const getMeetings = (date?: string | null): SacramentMeeting[] => {
-  if (date) return meetings.filter((meeting) => meeting.date === date);
-  return meetings;
-};
-
-export const getMeetingById = (id: number): SacramentMeeting | null => {
-  return meetings.find((meeting) => meeting.id === id) ?? null;
-};
