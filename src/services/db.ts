@@ -1,12 +1,12 @@
-import type { SacramentMeeting } from "../types/base";
+import type { SacramentMeeting } from "@/types/base";
 
-import { meetings } from "../data/meeting";
+import { meetings } from "@/data/meeting";
 
-export const getMeetings = (date?: string | null): SacramentMeeting[] => {
+export const getMeetings = async (date?: string | null): Promise<SacramentMeeting[]> => {
   if (date) return meetings.filter((meeting) => meeting.date === date);
   return meetings;
 };
 
-export const getMeetingById = (id: number): SacramentMeeting | null => {
+export const getMeetingById = async (id: number): Promise<SacramentMeeting | null> => {
   return meetings.find((meeting) => meeting.id === id) ?? null;
 };
