@@ -28,7 +28,7 @@ export default function MeetingsLayout({ children }: { children: React.ReactNode
             </Suspense>
           </ul>
         </nav>
-        <main className="flex-1">{children}</main>
+        <div className="flex-1">{children}</div>
       </div>
     </section>
   );
