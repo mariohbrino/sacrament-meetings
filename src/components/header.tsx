@@ -21,7 +21,7 @@ export default function Header() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
         <div className="text-foreground text-xl font-bold">Sacrament Meeting</div>
         <div className="flex items-center space-x-4">
-          <nav className="space-x-4">
+          <nav className="space-x-4" aria-label="Main Navigation">
             <ul className="flex space-x-4">
               <Suspense fallback={<li>Loading...</li>}>
                 {navLinks.map(({ href, label }, index) => (
