@@ -5,7 +5,7 @@ import { MeetingInfo } from "@/components/meetings/meeting-info";
 import { SacramentMeeting } from "@/types/base";
 import { getBaseUrl } from "@/utils/base-url.util";
 
-const idSchema = z.number().int().positive();
+const idSchema = z.string().regex(/^\d+$/).transform(Number).pipe(z.number().int().positive());
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -14,7 +14,7 @@ type RouteParams = {
 export const MeetingDetail = async ({ params }: RouteParams) => {
   const { id } = await params;
 
-  const parsedId = idSchema.safeParse(Number(id));
+  const parsedId = idSchema.safeParse(id);
   if (!parsedId.success) notFound();
 
   const endpointUrl = `${await getBaseUrl()}/api/meetings/${parsedId.data}`;

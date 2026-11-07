@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { getMeetingById } from "@/services/db";
 
-const idSchema = z.number().int().positive();
+const idSchema = z.string().regex(/^\d+$/).transform(Number).pipe(z.number().int().positive());
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   void request;
 
   const { id: routeId } = await params;
-  const parsedId = idSchema.safeParse(Number(routeId));
+  const parsedId = idSchema.safeParse(routeId);
   if (!parsedId.success) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
