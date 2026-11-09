@@ -88,3 +88,31 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+@media print {
+  * {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+}
