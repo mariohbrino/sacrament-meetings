@@ -18,8 +18,10 @@ const dmMono = DM_Mono({
   weight: ["300", "400", "500"],
 });
 
+const wardName: string = "Garden Park 1st";
+
 export const metadata: Metadata = {
-  title: "Sacrament Meeting",
+  title: `${wardName} | Sacrament Meeting`,
   description: "Schedule and details for sacrament meetings",
 };
 
@@ -28,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${dmMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
+          <Header wardName={wardName} />
           {children}
           <Footer />
         </ThemeProvider>
