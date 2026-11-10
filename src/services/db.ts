@@ -17,8 +17,7 @@ export const getCurrentSunday = async (): Promise<SacramentMeeting | null> => {
   const sunday = new Date(today);
   sunday.setDate(today.getDate() - dayOfWeek);
 
-  const sundayDate = sunday.toISOString().split("T")[0];
-  const meeting = meetings.find((meeting) => meeting.date === sundayDate);
+  const meeting = meetings.find((meeting) => meeting.date === sunday.toLocaleDateString("sv-SE"));
 
   if (!meeting) {
     return null;
