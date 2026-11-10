@@ -15,13 +15,18 @@ export const MeetingDetail = async ({ params }: RouteParams) => {
   const { id } = await params;
 
   const parsedId = idSchema.safeParse(id);
-  if (!parsedId.success) notFound();
+  if (!parsedId.success) {
+    notFound();
+  }
 
   const endpointUrl = `${await getBaseUrl()}/api/meetings/${parsedId.data}`;
 
-  const meetingDetail: SacramentMeeting = await fetch(endpointUrl).then((response) => response.json());
+  const response = await fetch(endpointUrl);
+  if (!response.ok) {
+    notFound();
+  }
 
-  if (!meetingDetail) notFound();
+  const meetingDetail: SacramentMeeting = await response.json();
 
   return <MeetingInfo meetingDetail={meetingDetail} />;
 };

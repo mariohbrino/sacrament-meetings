@@ -4,11 +4,12 @@ import { getBaseUrl } from "@/utils/base-url.util";
 
 export const CurrentMeeting = async () => {
   const endpointUrl = `${await getBaseUrl()}/api/meetings/current`;
-  const meetingDetail: SacramentMeeting = await fetch(endpointUrl).then((response) => response.json());
-
-  if (!meetingDetail) {
+  const response = await fetch(endpointUrl);
+  if (!response.ok) {
     return <p className="text-secondary-foreground text-sm">No meeting found for the current Sunday.</p>;
   }
+
+  const meetingDetail: SacramentMeeting = await response.json();
 
   return <MeetingInfo meetingDetail={meetingDetail} />;
 };
