@@ -1,9 +1,26 @@
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-import { CurrentMeeting } from "@/components/meetings/meeting-current";
+import { MeetingInfo } from "@/components/meeting-info";
 import PrintButton from "@/components/ui/print-button";
+import { SacramentMeeting } from "@/types/base";
+import { getBaseUrl } from "@/utils/base-url.util";
 
-export default async function CurrentMeetingDetailPage() {
+const fetchCurrentMeeting = async () => {
+  const endpointUrl = `${await getBaseUrl()}/api/meetings/current`;
+  const response = await fetch(endpointUrl);
+  if (!response.ok) {
+    redirect("/meetings");
+  }
+  return response.json();
+};
+
+async function CurrentMeeting() {
+  const meetingDetail: SacramentMeeting = await fetchCurrentMeeting();
+  return <MeetingInfo meetingDetail={meetingDetail} />;
+}
+
+export default function CurrentMeetingDetailPage() {
   return (
     <div className="mx-auto w-full max-w-7xl grow p-6">
       <main className="flex flex-col gap-6">

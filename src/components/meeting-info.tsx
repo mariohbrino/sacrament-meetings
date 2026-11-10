@@ -1,4 +1,4 @@
-import { meetingBadges } from "@/components/meetings/meeting-badges";
+import { meetingBadges } from "@/components/meeting-badges";
 import type { Hymn, SacramentMeeting } from "@/types/base";
 import { formatDate } from "@/utils/data-format.util";
 

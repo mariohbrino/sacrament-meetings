@@ -1,12 +1,7 @@
-import { MeetingCard } from "@/components/meetings/meeting-card";
+import { MeetingCard } from "@/components/meeting-card";
 import type { SacramentMeeting } from "@/types/base";
-import { getBaseUrl } from "@/utils/base-url.util";
 
-export const MeetingsList = async () => {
-  const meetings: SacramentMeeting[] = await fetch(`${await getBaseUrl()}/api/meetings`).then((response) =>
-    response.json(),
-  );
-
+export const MeetingsList = async ({ meetings }: { meetings: SacramentMeeting[] }) => {
   return (
     <>
       {meetings.map((meeting: SacramentMeeting) => (
