@@ -13,7 +13,7 @@ interface PageProps {
   searchParams: Promise<{ page?: string; query?: string; limit?: string }>;
 }
 
-export default async function MeetingsPage({ searchParams }: PageProps) {
+const getMeetingData = async (searchParams: Promise<{ page?: string; query?: string; limit?: string }>) => {
   const validated = paginationSchema.safeParse(await searchParams);
   const endpointUrl: string = `${await getBaseUrl()}/api/meetings`;
   const endpointWithParams = new URL(endpointUrl);
@@ -35,6 +35,11 @@ export default async function MeetingsPage({ searchParams }: PageProps) {
   }
 
   const response = await fetch(endpointWithParams.toString());
+  return response;
+};
+
+export default async function MeetingsPage({ searchParams }: PageProps) {
+  const response = await getMeetingData(searchParams);
   let meetings: PaginationResponse = {
     data: [],
     total: 0,
