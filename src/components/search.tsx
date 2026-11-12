@@ -25,9 +25,10 @@ export function Search({ focus }: { focus?: boolean }) {
 
   return (
     <input
+      aria-label="Search"
       className="border-border mb-4 rounded border p-2"
       type="search"
-      placeholder="Search projects..."
+      placeholder="Search..."
       defaultValue={searchParams.get("query")?.toString()}
       onChange={(e) => handleSearch(e.target.value)}
       autoFocus={focus}
