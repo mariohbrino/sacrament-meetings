@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { meetingBadges } from "@/components/meeting-badges";
-import type { MeetingType } from "@/types/base";
+import type { MeetingType } from "@/types/meeting.type";
 import { formatDate } from "@/utils/data-format.util";
 
 interface MeetingCardProps {

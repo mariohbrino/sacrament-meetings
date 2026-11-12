@@ -1,4 +1,4 @@
-import { and, arrayOverlaps, eq, getTableColumns, ilike, or, sql } from "drizzle-orm";
+import { and, eq, getTableColumns, ilike, or, sql } from "drizzle-orm";
 
 import * as tables from "@/database/schema";
 import { database } from "@/services/database.service";
@@ -23,7 +23,7 @@ export const getMeetings = async (
         ilike(tables.meetings.presiding, `%${query}%`),
         ilike(tables.meetings.conducting, `%${query}%`),
         ilike(tables.meetings.meetingType, `%${query}%`),
-        arrayOverlaps(tables.meetings.speakers, [query]),
+        sql`${tables.meetings.speakers}::text ilike ${`%${query}%`}`,
       ),
     );
   }

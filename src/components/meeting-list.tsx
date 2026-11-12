@@ -1,5 +1,5 @@
 import { MeetingCard } from "@/components/meeting-card";
-import type { SacramentMeeting } from "@/types/base";
+import type { SacramentMeeting } from "@/types/meeting.type";
 
 export const MeetingsList = async ({ meetings }: { meetings: SacramentMeeting[] }) => {
   return (

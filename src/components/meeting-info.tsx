@@ -1,5 +1,5 @@
 import { meetingBadges } from "@/components/meeting-badges";
-import type { Hymn, SacramentMeeting } from "@/types/base";
+import type { Hymn, SacramentMeeting } from "@/types/meeting.type";
 import { formatDate } from "@/utils/data-format.util";
 
 type MeetingDetailProps = {
@@ -78,7 +78,7 @@ export const MeetingInfo = async ({ meetingDetail }: MeetingDetailProps) => {
       </Section>
 
       <Section title="Business">
-        {wardBusiness.length > 0 ? (
+        {wardBusiness && wardBusiness.length > 0 ? (
           <ul className="list-inside list-disc text-sm">
             {wardBusiness.map((item) => (
               <li key={item.description}>{item.description}</li>
@@ -101,7 +101,7 @@ export const MeetingInfo = async ({ meetingDetail }: MeetingDetailProps) => {
 
       <Section title="Program">
         <ul className="flex flex-col gap-2 text-sm">
-          {speakers.map((speaker) => (
+          {speakers?.map((speaker) => (
             <li key={`${speaker.name}-${speaker.topic}`} className="flex flex-col">
               <span className="font-medium">
                 {speaker.name}

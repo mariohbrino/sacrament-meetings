@@ -1,4 +1,4 @@
-import type { MeetingType } from "@/types/base";
+import type { MeetingType } from "@/types/meeting.type";
 
 export const meetingBadges: Record<MeetingType, { label: string; color: string }> = {
   testimony: { label: "Testimony", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-200" },
