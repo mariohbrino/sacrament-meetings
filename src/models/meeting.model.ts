@@ -61,3 +61,19 @@ export const getMeetingById = async (id: number): Promise<SacramentMeeting | und
   const result = await database().select().from(tables.meetings).where(eq(tables.meetings.id, id));
   return result[0] ? result[0] : undefined;
 };
+
+export async function addMeeting(data: Omit<SacramentMeeting, "id">): Promise<SacramentMeeting> {
+  void data;
+  throw new Error("addMeeting: database implementation coming in Week 04");
+}
+
+export async function updateMeeting(id: number, updates: Partial<SacramentMeeting>): Promise<SacramentMeeting | null> {
+  void id;
+  void updates;
+  throw new Error("updateMeeting: database implementation coming in Week 04");
+}
+
+export async function deleteMeeting(id: number): Promise<boolean> {
+  void id;
+  throw new Error("deleteMeeting: database implementation coming in Week 04");
+}
