@@ -2,17 +2,16 @@ import { and, eq, getTableColumns, ilike, or, sql } from "drizzle-orm";
 
 import * as tables from "@/database/schema";
 import { database } from "@/services/database.service";
-import type { MeetingResponse, SacramentMeeting } from "@/types/meeting.type";
-
-const DEFAULT_PAGE = 1;
-const DEFAULT_PAGE_SIZE = 10;
+import type { SacramentMeeting } from "@/types/meeting.type";
+import type { PaginationResponse } from "@/types/pagination.type";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "@/utils/pagination.util";
 
 export const getMeetings = async (
   date?: string,
   page = DEFAULT_PAGE,
   query?: string,
   limit = DEFAULT_PAGE_SIZE,
-): Promise<MeetingResponse> => {
+): Promise<PaginationResponse> => {
   const offset = (page - 1) * limit;
 
   const conditions = [];

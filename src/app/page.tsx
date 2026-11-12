@@ -3,12 +3,13 @@ import { Suspense } from "react";
 
 import { MeetingCardPlaceholder } from "@/components/meeting-card";
 import { MeetingsList } from "@/components/meeting-list";
-import type { MeetingResponse } from "@/types/meeting.type";
+import type { PaginationResponse } from "@/types/pagination.type";
 import { getBaseUrl } from "@/utils/base-url.util";
+import { DEFAULT_PAGINATION_LIMIT } from "@/utils/pagination.util";
 
 export default async function Home() {
-  const endpointUrl: string = `${await getBaseUrl()}/api/meetings`;
-  const meetings: MeetingResponse = await fetch(endpointUrl).then((response) => response.json());
+  const endpointUrl: string = `${await getBaseUrl()}/api/meetings?limit=${DEFAULT_PAGINATION_LIMIT}`;
+  const meetings: PaginationResponse = await fetch(endpointUrl).then((response) => response.json());
 
   return (
     <div className="mx-auto w-full max-w-7xl grow">
