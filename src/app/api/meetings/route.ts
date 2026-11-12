@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getMeetings } from "@/services/db";
+import { getMeetings } from "@/models/meeting.model";
 
 const dateSchema = z.coerce.date();
 
@@ -19,6 +19,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(meetings);
   }
 
-  const meetings = await getMeetings(null);
+  const meetings = await getMeetings();
   return NextResponse.json(meetings);
 }

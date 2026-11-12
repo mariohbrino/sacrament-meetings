@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { MeetingInfo } from "@/components/meeting-info";
 import PrintButton from "@/components/ui/print-button";
-import { SacramentMeeting } from "@/types/base";
+import type { SacramentMeeting } from "@/types/meeting.type";
 import { getBaseUrl } from "@/utils/base-url.util";
 
 const fetchCurrentMeeting = async () => {

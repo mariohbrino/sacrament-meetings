@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getMeetingById } from "@/services/db";
+import { getMeetingById } from "@/models/meeting.model";
 
 const idSchema = z.string().regex(/^\d+$/).transform(Number).pipe(z.number().int().positive());
 
