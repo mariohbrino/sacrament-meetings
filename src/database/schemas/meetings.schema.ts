@@ -8,7 +8,7 @@ export const meetings = pgTable(
   {
     id: serial("id").primaryKey(),
     date: date("date").notNull().unique(),
-    meetingType: varchar("meeting_type", { length: 20 }).$type<MeetingType>().notNull(),
+    meetingType: varchar("meeting_type", { length: 20 }).$type<MeetingType>().notNull().default("regular"),
     presiding: varchar("presiding", { length: 255 }).notNull(),
     conducting: varchar("conducting", { length: 255 }).notNull(),
     announcements: text("announcements").array().default([]),
@@ -21,7 +21,5 @@ export const meetings = pgTable(
     closingHymn: jsonb("closing_hymn").$type<Hymn>().notNull(),
     closingPrayer: varchar("closing_prayer", { length: 255 }).notNull(),
   },
-  (table) => [
-    check("meetings_type_check", sql`${table.meetingType} in ('testimony','regular','stake','general','special')`),
-  ],
+  (table) => [check("meetings_type_check", sql`${table.meetingType} in ('testimony','regular','stake','general')`)],
 );

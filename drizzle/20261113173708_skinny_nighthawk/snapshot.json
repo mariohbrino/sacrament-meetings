@@ -1,0 +1,63 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "752d336f-68e1-4b12-999f-9f3862170585",
+  "prevIds": [
+    "4b565593-f54b-4b7d-8fc6-adb188301a23"
+  ],
+  "footprints": [
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "meetings",
+        "meeting_type"
+      ],
+      "writes": [
+        "s|colprop|public.meetings.meeting_type.default"
+      ],
+      "reads": [
+        "n|tbl|public.meetings",
+        "n|sch|public",
+        "n|col|public.meetings.meeting_type"
+      ],
+      "sqlHash": "4f00081aa42de88d"
+    },
+    {
+      "statementType": "alter_check",
+      "statementTarget": [
+        "table",
+        "public",
+        "meetings"
+      ],
+      "writes": [
+        "s|ck|public.meetings.meetings_type_check"
+      ],
+      "reads": [
+        "n|tbl|public.meetings",
+        "n|sch|public",
+        "n|col|public.meetings.meeting_type",
+        "e|col|public.meetings.meeting_type"
+      ],
+      "sqlHash": "8c7ee8463f6372bd"
+    }
+  ],
+  "deltas": [
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"meetings\",\"meeting_type\"]",
+      "set": {
+        "default": "'regular'"
+      }
+    },
+    {
+      "op": "alter",
+      "key": "checks\u0000[\"public\",\"meetings\",\"meetings_type_check\"]",
+      "set": {
+        "value": "\"meeting_type\" in ('testimony','regular','stake','general')"
+      }
+    }
+  ]
+}
