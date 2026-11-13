@@ -1,0 +1,2 @@
+ALTER TABLE "meetings" ALTER COLUMN "meeting_type" SET DEFAULT 'regular';--> statement-breakpoint
+ALTER TABLE "meetings" DROP CONSTRAINT "meetings_type_check", ADD CONSTRAINT "meetings_type_check" CHECK ("meeting_type" in ('testimony','regular','stake','general'));

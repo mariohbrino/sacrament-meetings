@@ -1,0 +1,28 @@
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  db_sacrament:
+
+services:
+  db-sacrament:
+    image: postgres:18.1-alpine
+    container_name: db_sacrament
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sacrament
+      POSTGRES_USER: sacrament
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5479:5432
+    volumes:
+      - db_sacrament:/var/lib/postgresql
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sacrament -d sacrament"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
