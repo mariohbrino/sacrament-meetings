@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getMeetings } from "@/models/meeting.model";
+import { createMeetingModal } from "@/models/meeting.model";
+import { database } from "@/services/database.service";
 import { paginationSchema } from "@/validations/pagination.validate";
 
 const dateSchema = z.object({ date: z.coerce.date().optional() });
@@ -17,12 +18,19 @@ export async function GET(request: NextRequest) {
 
   const { page, query, limit, date } = validated.data;
 
-  if (date) {
-    const queryDate = date.toLocaleDateString("sv-SE");
-    const meetings = await getMeetings(queryDate);
-    return NextResponse.json(meetings);
-  }
+  try {
+    const meetingModal = createMeetingModal(database);
 
-  const meetings = await getMeetings(date, page, query, limit);
-  return NextResponse.json(meetings);
+    if (date) {
+      const queryDate = date.toLocaleDateString("sv-SE");
+      const meetings = await meetingModal.getMeetings(queryDate);
+      return NextResponse.json(meetings);
+    }
+
+    const meetings = await meetingModal.getMeetings(date, page, query, limit);
+    return NextResponse.json(meetings);
+  } catch (error) {
+    console.error("Error fetching meetings:", error);
+    return NextResponse.json({ error: "An error occurred while fetching the meetings" }, { status: 500 });
+  }
 }
