@@ -1,4 +1,7 @@
+import type z from "zod";
+
 import { meetings } from "@/database/schema";
+import type { meetingSchema } from "@/validations/meeting.validate";
 
 export type MeetingType = "testimony" | "regular" | "stake" | "general";
 
@@ -18,3 +21,11 @@ export interface WardBusinessItem {
 }
 
 export type SacramentMeeting = typeof meetings.$inferSelect;
+
+export type SacramentMeetingField = keyof Omit<SacramentMeeting, "id" | "createdAt" | "updatedAt">;
+
+export type SacramentMeetingState = {
+  values?: Partial<z.input<typeof meetingSchema>>;
+  message?: string;
+  errors?: Partial<Record<SacramentMeetingField, string[]>>;
+};

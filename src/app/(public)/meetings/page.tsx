@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Suspense } from "react";
 
 import { MeetingCardPlaceholder } from "@/components/meeting-card";
@@ -56,11 +57,16 @@ export default async function MeetingsPage({ searchParams }: PageProps) {
     <div className="mx-auto w-full max-w-7xl grow p-6">
       <main className="flex flex-col gap-6">
         <h1 className="text-2xl font-bold">Upcoming Meetings</h1>
+        <div className="flex w-full justify-end">
+          <Link href="/meetings/new" className="text-blue-500 hover:underline">
+            Create Meeting
+          </Link>
+        </div>
         <Search focus />
         <Suspense fallback={<MeetingCardPlaceholder />}>
           <div className="flex w-full flex-col gap-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <MeetingsList meetings={meetings.data} />
+              <MeetingsList meetings={meetings.data} actions={true} />
             </div>
             <Pagination
               perPage={PAGINATION_LIMITS}
