@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const meetingModal = createMeetingModal(database);
-    const meetings = await meetingModal.getMeetings(getCurrentSunday());
+    const meetings = await meetingModal.get(getCurrentSunday());
 
     if (meetings.data.length === 0) {
       return NextResponse.json({ error: "No current meeting found" }, { status: 404 });

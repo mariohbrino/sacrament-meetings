@@ -50,7 +50,7 @@ export const create = async (_prevState: SacramentMeetingState, formData: FormDa
     const meetingModal = createMeetingModal(database);
     const { openingHymn, sacramentHymn, closingHymn, wardBusiness, speakers, stakeBusiness, ...rest } = validated.data;
 
-    await meetingModal.storeMeeting({
+    await meetingModal.store({
       ...rest,
       openingHymn: { number: openingHymn.number, title: openingHymn.title },
       sacramentHymn: { number: sacramentHymn.number, title: sacramentHymn.title },
@@ -113,7 +113,7 @@ export const update = async (
     const meetingModal = createMeetingModal(database);
     const { openingHymn, sacramentHymn, closingHymn, wardBusiness, speakers, stakeBusiness, ...rest } = validated.data;
 
-    await meetingModal.updateMeeting(meetingId, {
+    await meetingModal.update(meetingId, {
       ...rest,
       openingHymn: { number: openingHymn.number, title: openingHymn.title },
       sacramentHymn: { number: sacramentHymn.number, title: sacramentHymn.title },
@@ -139,7 +139,7 @@ export async function remove(meetingId: number): Promise<void> {
 
   try {
     const meetingModel = createMeetingModal(database);
-    await meetingModel.removeMeeting(validated.data);
+    await meetingModel.remove(validated.data);
   } catch (error) {
     console.log("Error occurred while deleting meeting", error);
     throw new Error("Failed to delete meeting");

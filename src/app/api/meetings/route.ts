@@ -23,11 +23,11 @@ export async function GET(request: NextRequest) {
 
     if (date) {
       const queryDate = date.toLocaleDateString("sv-SE");
-      const meetings = await meetingModal.getMeetings(queryDate);
+      const meetings = await meetingModal.get(queryDate);
       return NextResponse.json(meetings);
     }
 
-    const meetings = await meetingModal.getMeetings(date, page, query, limit);
+    const meetings = await meetingModal.get(date, page, query, limit);
     return NextResponse.json(meetings);
   } catch (error) {
     console.error("Error fetching meetings:", error);

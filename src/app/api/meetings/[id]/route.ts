@@ -22,7 +22,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const id = parsedId.data;
     const meetingModal = createMeetingModal(database);
-    const meeting = await meetingModal.getMeetingById(id);
+    const meeting = await meetingModal.findById(id);
 
     if (!meeting) {
       return NextResponse.json({ error: "Meeting not found" }, { status: 404 });
